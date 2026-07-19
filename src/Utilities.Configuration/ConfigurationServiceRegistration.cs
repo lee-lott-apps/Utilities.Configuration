@@ -10,7 +10,7 @@ public static class ConfigurationServiceRegistration
 
 		services.AddMediatR(cfg =>
 		{
-			if(!string.IsNullOrWhiteSpace(mediatRLicenseKey))
+			if (!string.IsNullOrWhiteSpace(mediatRLicenseKey))
 			{
 				cfg.LicenseKey = mediatRLicenseKey;
 			}
