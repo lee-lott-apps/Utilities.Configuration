@@ -56,7 +56,7 @@ jobs:
           
       - name: Build NuGet Package
         id: build-project
-        uses: lee-lott-actions/build-vsproject-dotnet-nuget-release@v1
+        uses: lee-lott-actions/build-vsproject-dotnet-nuget-release@v2
         with:
           project-file-path: ${{ env.PROJECT_PATH }}
           prerelease: ${{ env.PRERELEASE }}
