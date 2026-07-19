@@ -1,0 +1,30 @@
+name: Gated Build Check
+
+on:
+  pull_request:
+    branches: ['main', 'development']
+env:
+  SOLUTION_NAME: ./src/Utilities.Configuration.sln
+    
+jobs:
+  build:
+    if: github.event.pull_request.user.login != vars.DEVOPS_BOT_NAME
+    name: Build Check
+    runs-on: windows-latest
+    steps:
+      - name: Setup
+        uses: actions/checkout@v6
+        
+      - name: Setup dotnet 
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.x
+          
+      - name: Build
+        run: dotnet build ${{ env.SOLUTION_NAME }}
+        
+      - name: Run Unit Tests
+        run: dotnet test ${{ env.SOLUTION_NAME }}
+        
+      - name: Check Formatting
+        run: dotnet format ${{ env.SOLUTION_NAME }} --verify-no-changes --verbosity diagnostic
