@@ -4,9 +4,20 @@ namespace Utilities.Configuration;
 
 public static class ConfigurationServiceRegistration
 {
-	public static IServiceCollection AddConfigurationServices(this IServiceCollection services)
+	public static IServiceCollection AddConfigurationServices(this IServiceCollection services, string? mediatRLicenseKey = null)
 	{
-		services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+		services.AddLogging();
+
+		services.AddMediatR(cfg =>
+		{
+			if(!string.IsNullOrWhiteSpace(mediatRLicenseKey))
+			{
+				cfg.LicenseKey = mediatRLicenseKey;
+			}
+
+			cfg.RegisterServicesFromAssemblies(typeof(ConfigurationServiceRegistration).Assembly);
+		});
+
 		return services;
 	}
 }
