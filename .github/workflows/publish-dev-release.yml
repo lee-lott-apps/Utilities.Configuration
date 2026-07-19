@@ -10,7 +10,7 @@ on:
 env:
   PROJECT_PATH: ./src/Utilities.Configuration/Utilities.Configuration.csproj
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NUGET_URL: 'https://nuget.pkg.github.com/la-wlf/index.json'
+  NUGET_URL: 'https://nuget.pkg.github.com/lee-lott-apps/index.json'
   NUGET_PACKAGE_NAME: 'Utilities.Configuration'
   PRERELEASE: true
   PRERELEASE_SUFFIX: 'Dev'
